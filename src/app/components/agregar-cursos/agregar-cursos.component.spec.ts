@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AgregarCursosComponent } from './agregar-cursos.component';
 
 describe('AgregarCursosComponent', () => {
@@ -8,7 +7,7 @@ describe('AgregarCursosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AgregarCursosComponent]
+      declarations: [AgregarCursosComponent] // Cambiado de imports a declarations
     })
     .compileComponents();
 

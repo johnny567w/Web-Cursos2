@@ -23,7 +23,7 @@ img {
 }
 
 .header {
-  /*  background-image: url(imagenes/fondoprincipal.png); */
+    background-image: url('./assets/img/fondoprincipal.png');
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -152,7 +152,6 @@ p {
     color: rgb(199, 197, 158);
 }
 
-/* Responsive design for about section */
 @media (max-width: 768px) {
     .about {
         flex-direction: column;
@@ -168,10 +167,9 @@ p {
     }
 }
 
-/* Estilos para la sección de Información */
 .information {
     padding: 70px 20px;
-   /* background-image: url(imagenes/seccion1.png); */
+    background-image: url('./assets/img/seccion1.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

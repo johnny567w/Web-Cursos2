@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './components/footer/footer.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { CursosComponent } from './components/cursos/cursos.component';
+import { AgregarCursosComponent } from './components/agregar-cursos/agregar-cursos.component';
+import { ListaCursosComponent } from './components/lista-cursos/lista-cursos.component';
+import { InformacionComponent } from './components/informacion/informacion.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FooterComponent,InicioComponent,CursosComponent,AgregarCursosComponent,ListaCursosComponent,InformacionComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'] // Corregido aquí
 })
