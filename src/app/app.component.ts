@@ -5,13 +5,15 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { AgregarCursosComponent } from './components/agregar-cursos/agregar-cursos.component';
 import { InformacionComponent } from './components/informacion/informacion.component';
 import { LcursosComponent } from './components/lcursos/lcursos.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FooterComponent,InicioComponent,AgregarCursosComponent,InformacionComponent,LcursosComponent],
+  imports: [RouterOutlet, FooterComponent,InicioComponent,AgregarCursosComponent,InformacionComponent,LcursosComponent,HttpClientModule,],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'] 
+  
 })
 export class AppComponent {
   title = 'web-Cursos2';

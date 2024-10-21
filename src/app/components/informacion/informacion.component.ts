@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './informacion.component.css'
 })
 export class InformacionComponent {
-
+  scrollToSection(section: string) {
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

@@ -1,29 +1,33 @@
-<!-- Sección para agregar nuevos cursos -->
+<div>
+    <h2>Hora Actual: {{ horaActual }}</h2>
+    <h3>Fecha Actual: {{ fechaActual }}</h3> <!-- Nueva línea para mostrar la fecha -->
+</div>
+<hr>
 <main class="agregar-cursos container" id="addCourseSection">
-  <h2>Incorporar Nuevos Cursos</h2>
-  <form (ngSubmit)="addCourse()" #courseForm="ngForm">
-      <input type="text" [(ngModel)]="nuevoCurso.nombre" name="nombre" placeholder="Nombre del Curso" required>
-      <input type="text" [(ngModel)]="nuevoCurso.instructor" name="instructor" placeholder="Nombre del Instructor" required>
-      <input type="date" [(ngModel)]="nuevoCurso.fechaInicio" name="fecha" placeholder="Fecha de Inicio" required>
-      <input type="text" [(ngModel)]="nuevoCurso.duracion" name="duracion" placeholder="Duración (ej. 4 semanas)" required>
-      <textarea [(ngModel)]="nuevoCurso.descripcion" name="descripcion" placeholder="Descripción" required></textarea>
-      <input type="submit" value="Agregar Curso" class="btn-3">
-  </form>
-  
-  <!-- Nueva sección para mostrar la lista de cursos -->
-  <section class="course-list-section" id="courseListSection">
-      <h3>Lista de Cursos Disponibles</h3>
-      <ul id="courseList">
-          <li *ngFor="let curso of cursos">
-              <strong>{{ curso.nombre }}</strong> - {{ curso.instructor }} - {{ curso.duracion }}
-              <br />
-              <small>
-                  <button (click)="toggleDescription(curso)">Ver más detalles</button>
-                  <span *ngIf="curso.mostrarDescripcion">{{ curso.descripcion }}</span>
-              </small>
-              <br />
-              <button (click)="deleteCourse(curso.nombre)">Eliminar Curso</button>
-          </li>
-      </ul>
-  </section>
+    <h2>Incorporar Nuevos Cursos</h2>
+    <form (ngSubmit)="addCourse()" #courseForm="ngForm">
+        <input type="text" [(ngModel)]="nuevoCurso.nombre" name="nombre" placeholder="Nombre del Curso" required>
+        <input type="text" [(ngModel)]="nuevoCurso.instructor" name="instructor" placeholder="Nombre del Instructor" required>
+        <input type="date" [(ngModel)]="nuevoCurso.fechaInicio" name="fecha" placeholder="Fecha de Inicio" required>
+        <input type="text" [(ngModel)]="nuevoCurso.duracion" name="duracion" placeholder="Duración (ej. 4 semanas)" required>
+        <textarea [(ngModel)]="nuevoCurso.descripcion" name="descripcion" placeholder="Descripción" required></textarea>
+        <input type="submit" value="Agregar Curso" class="btn-3">
+    </form>
+
+    <!-- Nueva sección para mostrar la lista de cursos -->
+    <section class="course-list-section" id="courseListSection">
+        <h3>Lista de Cursos Disponibles</h3>
+        <ul id="courseList">
+            <li *ngFor="let curso of cursos">
+                <strong>{{ curso.nombre }}</strong> - {{ curso.instructor }} - {{ curso.duracion }}
+                <br />
+                <small>
+                    <button (click)="toggleDescription(curso)">Ver más detalles</button>
+                    <span *ngIf="curso.mostrarDescripcion">{{ curso.descripcion }}</span>
+                </small>
+                <br />
+                <button (click)="deleteCourse(curso.nombre)">Eliminar Curso</button>
+            </li>
+        </ul>
+    </section>
 </main>

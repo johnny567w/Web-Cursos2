@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ManejoCursosService } from '../../services/manejo-cursos.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-agregar-cursos',
@@ -11,66 +11,48 @@ import { ManejoCursosService } from '../../services/manejo-cursos.service';
   styleUrls: ['./agregar-cursos.component.css'],
 })
 export class AgregarCursosComponent implements OnInit {
-  nuevoCurso: any = {
+  nuevoCurso = {
     nombre: '',
     instructor: '',
     fechaInicio: '',
     duracion: '',
-    descripcion: '',
-    mostrarDescripcion: false
+    descripcion: ''
   };
+
   cursos: any[] = [];
+  horaActual: string = '';
+  fechaActual: string = ''; // Nueva propiedad para la fecha
 
   ngOnInit(): void {
-    this.loadCourses();
+    this.getCurrentTime();
+    setInterval(() => {
+      this.getCurrentTime(); // Actualiza la hora y la fecha cada segundo
+    }, 1000);
   }
 
-  loadCourses(): void {
-    const storedCourses = JSON.parse(localStorage.getItem("courses") || '[]');
-    this.cursos = storedCourses; // Asigna los cursos cargados a la variable del componente
+  getCurrentTime(): void {
+    const now = new Date();
+    this.horaActual = now.toLocaleTimeString(); // Formato legible para la hora
+    this.fechaActual = now.toLocaleDateString(); // Formato legible para la fecha
   }
 
+
+  // Método para agregar un nuevo curso
   addCourse(): void {
-    if (!this.validateCourseForm()) {
-      return;
-    }
-
-    const newCourse = {
-      ...this.nuevoCurso,
-      mostrarDescripcion: false // Inicialmente no se muestra la descripción
-    };
-
+    const newCourse = { ...this.nuevoCurso, mostrarDescripcion: false };
     this.cursos.push(newCourse);
-    this.saveCourses();
-    this.nuevoCurso = { // Resetea el formulario
-      nombre: '',
-      instructor: '',
-      fechaInicio: '',
-      duracion: '',
-      descripcion: '',
-      mostrarDescripcion: false
-    };
-  }
-
-  saveCourses(): void {
     localStorage.setItem("courses", JSON.stringify(this.cursos));
+    this.nuevoCurso = { nombre: '', instructor: '', fechaInicio: '', duracion: '', descripcion: '' }; // Resetear el formulario
   }
 
-  validateCourseForm(): boolean {
-    const { nombre, instructor, fechaInicio, duracion } = this.nuevoCurso;
-    if (!nombre || !instructor || !fechaInicio || !duracion) {
-      alert("Por favor, completa todos los campos obligatorios.");
-      return false;
-    }
-    return true;
-  }
-
+  // Método para mostrar u ocultar la descripción del curso
   toggleDescription(curso: any): void {
-    curso.mostrarDescripcion = !curso.mostrarDescripcion; // Cambia el estado de mostrar la descripción
+    curso.mostrarDescripcion = !curso.mostrarDescripcion;
   }
 
+  // Método para eliminar un curso
   deleteCourse(courseName: string): void {
-    this.cursos = this.cursos.filter(course => course.nombre !== courseName);
-    this.saveCourses();
+    this.cursos = this.cursos.filter(curso => curso.nombre !== courseName);
+    localStorage.setItem("courses", JSON.stringify(this.cursos));
   }
 }
